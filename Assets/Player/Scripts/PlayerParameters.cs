@@ -8,8 +8,10 @@ public class PlayerParameters : MonoBehaviour
     public float _health;
     public float _maxStamina;
     public float _stamina;
+    public int _money;
     void Start()
     {
+        _money = 0;
         _maxHealth = 100;
         _health = _maxHealth;
         _maxStamina = 100;

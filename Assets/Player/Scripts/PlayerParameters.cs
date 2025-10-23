@@ -9,6 +9,10 @@ public class PlayerParameters : MonoBehaviour
     public float _maxStamina;
     public float _stamina;
     public int _money;
+
+    [Header("Ammo")]
+    public int Pistol;
+    public int AR;
     void Start()
     {
         _money = 0;

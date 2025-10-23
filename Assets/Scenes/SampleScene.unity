@@ -1943,7 +1943,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.03863242}
+  m_AnchoredPosition: {x: 0, y: 0.0010117361}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1001 &336026136
@@ -5153,7 +5153,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1947668468}
   m_Direction: 3
   m_Value: 0
-  m_Size: 0.99990237
+  m_Size: 0.9999974
   m_NumberOfSteps: 11
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5859,6 +5859,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6940308a7163dd418e70a2a3b559339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 963194229}
+  menu: {fileID: 221314877}
   ShopCanvas: {fileID: 1438365266}
   ShopIsActive: 0
 --- !u!1 &1124497526
@@ -7891,6 +7893,8 @@ MonoBehaviour:
   _maxStamina: 0
   _stamina: 0
   _money: 0
+  Pistol: 0
+  AR: 0
 --- !u!114 &1483328764
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -136,6 +136,18 @@ public class QuickslotInventory : MonoBehaviour { // Объект у котор�
                 }
             }
         }
+        else if (currentSlot.item is MeleeWeapon meleeWeaponData)
+        {
+            var meleeWeaponLogic = obj.GetComponent<MeleeWeaponLogic>();
+            if (meleeWeaponLogic != null)
+            {
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                if (player != null)
+                {
+                    meleeWeaponLogic.Init(player.transform.GetChild(0).GetComponent<Animator>(), meleeWeaponData);
+                }
+            }
+        }
         Transform grip = obj.transform.Find("GripPoint");
         if (grip != null)
         {

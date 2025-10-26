@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eabd70c607df814b850e87200a73da6, type: 3}
+  m_Name: Test_Spear
+  m_EditorClassIdentifier: 
+  maxAmount: 1
+  Type: 2
+  Icon: {fileID: 21300000, guid: f548aaa7a9f1c5d4fbe5ed85512a9854, type: 3}
+  itemPrefab: {fileID: 6325555428071671315, guid: a457d8e3394e15946ac9f41a1d5fe2b1, type: 3}
+  Name: Naginata
+  Description: 
+  isConsumeable: 0
+  RestoreHealth: 0
+  FreezeStamina: 0
+  IncreaseSpeed: 0
+  WeaponType: 3
+  radius: 5
+  damage: 35
+  attackSpeed: 7

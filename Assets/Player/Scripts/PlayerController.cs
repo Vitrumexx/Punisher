@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private Vector3 velocity;
 
+    private bool canMove;
     private bool isWalking;
     [HideInInspector] public bool isGrounded;
     [HideInInspector] public bool isSprinting;

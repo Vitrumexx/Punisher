@@ -30,4 +30,16 @@ public class Shop_Buy : MonoBehaviour
         else
             return;
     }
+
+    public void SellAmmo()
+    {
+        if (playerParam._money >= price)
+        {
+            playerParam._money -= price;
+            playerParam._bullets++;
+            Debug.Log(item.name + " has been sold for " + price);
+        }
+        else
+            return;
+    }
 }

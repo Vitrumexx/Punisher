@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,15 +11,19 @@ public class ParameterBars : MonoBehaviour
     [SerializeField] private Slider staminaBar;
     [SerializeField] private GameObject StaminaSlider_obj;
 
+    [SerializeField] private TextMeshProUGUI AmmoText;
+
     // Update is called once per frame
     void FixedUpdate()
     {
+        int _bullets = playerParam._bullets;
         float _maxStamina = playerParam._maxStamina;
         float _stamina = playerParam._stamina;
         float _maxHealth = playerParam._maxHealth;
         float _health = playerParam._health;
         HealthBar(_health, _maxHealth);
         StaminaBar(_stamina, _maxStamina);
+        AmmoCounter(_bullets);
     }
 
     public void HealthBar(float _health, float _maxHealth)
@@ -38,5 +41,9 @@ public class ParameterBars : MonoBehaviour
             StaminaSlider_obj.SetActive(false);
         else
             StaminaSlider_obj.SetActive(true);
+    }
+    public void AmmoCounter(int _bullets)
+    {
+        AmmoText.text = _bullets.ToString();
     }
 }

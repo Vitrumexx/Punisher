@@ -12,10 +12,10 @@ public class PlayerParameters : MonoBehaviour
     public int _supplies;
 
     [Header("Ammo")]
-    public int Pistol;
-    public int AR;
+    public int _bullets;
     void Start()
     {
+        _bullets = 0;
         _supplies = 0;
         _money = 0;
         _maxHealth = 100;

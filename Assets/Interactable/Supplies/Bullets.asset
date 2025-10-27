@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 702b6b3c5cba1cb4ea77390f72212194, type: 3}
+  m_Name: Bullets
+  m_EditorClassIdentifier: 
+  maxAmount: 0
+  Type: 0
+  Icon: {fileID: 21300000, guid: b693c3e2800f96e4e8821bc2b82542fb, type: 3}
+  itemPrefab: {fileID: 0}
+  Name: Ammo
+  Description: Ammo is need for shooting
+  isConsumeable: 0
+  RestoreHealth: 0
+  FreezeStamina: 0
+  IncreaseSpeed: 0
+  WeaponType: 0
+  clipAmmo: 0
+  maxAmmo: 0
+  damage: 0
+  shootingSpeed: 0
+  anim: {fileID: 0}

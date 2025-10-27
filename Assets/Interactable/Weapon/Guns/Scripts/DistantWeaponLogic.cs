@@ -7,6 +7,7 @@ public class DistantWeaponLogic : MonoBehaviour
     private DistantWeapon distantWeapon;
     public GameObject projectile;
     private AudioSource audio;
+    [SerializeField] private PlayerParameters playerParam;
     [SerializeField] private Transform projSpawnPoint;
     private Camera mainCamera;
     private Ray TargetRay;
@@ -20,11 +21,11 @@ public class DistantWeaponLogic : MonoBehaviour
         characterAnimator = animator;
         distantWeapon = weaponData;
         mainCamera = Camera.main;
-
+        
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
             handState = player.GetComponent<PlayerHandState>();
-
+        playerParam = handState.gameObject.GetComponent<PlayerParameters>();
         ApplyAnimation();
     }
 
@@ -140,15 +141,21 @@ public class DistantWeaponLogic : MonoBehaviour
 
     private void FireProjectile()
     {
-        TargetRay = mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
-
-        if (projectile == null || projSpawnPoint == null) return;
-        audio.PlayOneShot(audio.clip);
-        GameObject proj = Instantiate(projectile, projSpawnPoint.position, projSpawnPoint.rotation);
-        if (proj.TryGetComponent<Rigidbody>(out Rigidbody rb))
+        if (playerParam._bullets > 0)
         {
-            rb.isKinematic = false;
-            rb.AddForce(TargetRay.direction * 300f, ForceMode.Impulse);
+            TargetRay = mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
+
+            if (projectile == null || projSpawnPoint == null) return;
+            audio.PlayOneShot(audio.clip);
+            GameObject proj = Instantiate(projectile, projSpawnPoint.position, projSpawnPoint.rotation);
+            if (proj.TryGetComponent<Rigidbody>(out Rigidbody rb))
+            {
+                rb.isKinematic = false;
+                rb.AddForce(TargetRay.direction * 300f, ForceMode.Impulse);
+            }
+            playerParam._bullets--;
         }
+        else
+            return;
     }
 }

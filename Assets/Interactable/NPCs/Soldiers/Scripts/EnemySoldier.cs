@@ -11,6 +11,7 @@ public class EnemySoldier : MonoBehaviour
     public Transform[] patrolPoints;
     public Animator animator;
     private NavMeshAgent agent;
+    private bool CanPatrol;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -20,7 +21,15 @@ public class EnemySoldier : MonoBehaviour
     void Update()
     {
         animator.SetFloat("Speed", agent.speed);
-        Patrol();
+        if (Input.GetKeyDown(KeyCode.P))
+            CanPatrol = !CanPatrol;
+        if (CanPatrol)
+        {
+            Patrol();
+        }
+        else
+            agent.speed = 0;
+        
     }
 
     void Patrol()

@@ -179,6 +179,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 1636614486174586875, guid: d4fd0b0aa16b947439ba5598d373136c, type: 3}
+  emptyClip: {fileID: 8300000, guid: cafc46281ffe12d40a1905faf1c4139c, type: 3}
+  playerParam: {fileID: 0}
   projSpawnPoint: {fileID: 1439239269586745738}
 --- !u!54 &-8499434317962466422
 Rigidbody:

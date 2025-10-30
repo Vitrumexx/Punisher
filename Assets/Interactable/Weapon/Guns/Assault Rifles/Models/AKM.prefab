@@ -506,6 +506,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 5898330178479619288, guid: d92c838cabc72af489195938ee34e165, type: 3}
+  emptyClip: {fileID: 8300000, guid: cafc46281ffe12d40a1905faf1c4139c, type: 3}
+  playerParam: {fileID: 0}
   projSpawnPoint: {fileID: 2491111298694277025}
 --- !u!82 &1067561385402805042
 AudioSource:

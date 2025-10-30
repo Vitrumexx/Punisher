@@ -6,7 +6,11 @@ public class DistantWeaponLogic : MonoBehaviour
     private Animator characterAnimator;
     private DistantWeapon distantWeapon;
     public GameObject projectile;
+
+    public AudioClip emptyClip;
+    private AudioClip shotClip;
     private AudioSource audio;
+
     [SerializeField] private PlayerParameters playerParam;
     [SerializeField] private Transform projSpawnPoint;
     private Camera mainCamera;
@@ -18,6 +22,7 @@ public class DistantWeaponLogic : MonoBehaviour
     public void Init(Animator animator, DistantWeapon weaponData)
     {
         audio = GetComponent<AudioSource>();
+        shotClip = audio.clip;
         characterAnimator = animator;
         distantWeapon = weaponData;
         mainCamera = Camera.main;
@@ -146,6 +151,7 @@ public class DistantWeaponLogic : MonoBehaviour
             TargetRay = mainCamera.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
 
             if (projectile == null || projSpawnPoint == null) return;
+            if (audio.clip == emptyClip) audio.clip = shotClip;
             audio.PlayOneShot(audio.clip);
             GameObject proj = Instantiate(projectile, projSpawnPoint.position, projSpawnPoint.rotation);
             if (proj.TryGetComponent<Rigidbody>(out Rigidbody rb))
@@ -156,6 +162,10 @@ public class DistantWeaponLogic : MonoBehaviour
             playerParam._bullets--;
         }
         else
-            return;
+        {
+            audio.clip = emptyClip;
+            audio.PlayOneShot(audio.clip);
+        }
+            
     }
 }

@@ -17,7 +17,7 @@ public class PlayerParameters : MonoBehaviour
     {
         _bullets = 0;
         _supplies = 0;
-        _money = 0;
+        _money = 100;
         _maxHealth = 100;
         _health = _maxHealth;
         _maxStamina = 100;

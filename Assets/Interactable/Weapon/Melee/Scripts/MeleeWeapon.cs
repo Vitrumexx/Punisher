@@ -1,4 +1,4 @@
-using UnityEngine;
+    using UnityEngine;
 
 public enum MeleeWeaponType { Sword, Axe, Hammer, Spear, Sythe }
 

@@ -8,11 +8,13 @@ public class Projectile : MonoBehaviour
     public float lifetime = 1f;
 
     [Tooltip("Уничтожать при первом столкновении")]
-    public bool destroyOnCollision = true;
+    public bool destroyOnCollision = false;
 
     // Опционально: скорость для визуализации/логики (не используется для уничтожения)
     public float initialSpeed;
+    [SerializeField]private float damage;
 
+    private Collider ownerCollider;
     private Coroutine lifeCoroutine;
 
     private void OnEnable()
@@ -22,26 +24,43 @@ public class Projectile : MonoBehaviour
         lifeCoroutine = StartCoroutine(DestroyAfterLifetime());
     }
 
-    private void OnDisable()
+
+
+    public void Initialize(float damageValue, Collider owner)
     {
-        if (lifeCoroutine != null)
+        damage = damageValue;
+        ownerCollider = owner;
+
+        // Игнорируем коллизию с владельцем
+        Collider projectileCollider = GetComponent<Collider>();
+        if (projectileCollider != null && ownerCollider != null)
         {
-            StopCoroutine(lifeCoroutine);
-            lifeCoroutine = null;
+            Physics.IgnoreCollision(projectileCollider, ownerCollider);
         }
     }
 
     private IEnumerator DestroyAfterLifetime()
     {
         yield return new WaitForSeconds(lifetime);
+        Debug.Log($"[Projectile] Lifetime ended for {name}");
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (!destroyOnCollision) return;
+        Debug.Log($"[Projectile] Collided with {other.name}");
 
-        // Можно здесь добавить эффекты попадания, урон и т.д.
-        Destroy(gameObject);
+        EnemyHealth enemy = other.GetComponentInParent<EnemyHealth>();
+        if (enemy != null)
+        {
+            Debug.Log("[Projectile] Hit enemy!");
+            enemy.TakeDamage(damage);
+        }
+
+        if (destroyOnCollision)
+        {
+            Debug.Log("[Projectile] Destroying due to collision");
+            Destroy(gameObject);
+        }
     }
 }

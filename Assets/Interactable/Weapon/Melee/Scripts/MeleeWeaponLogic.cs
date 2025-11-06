@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class MeleeWeaponLogic : MonoBehaviour
 {
+    [SerializeField] private Collider triggerCollider;
     public Animator characterAnimator;
     private MeleeWeapon meleeWeaponData;
+    [SerializeField] private Animator weaponAnim;
 
     public void Init(Animator animator, MeleeWeapon data)
     {
         characterAnimator = animator;
         meleeWeaponData = data;
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+        weaponAnim = GetComponent<Animator>();
 
+        triggerCollider.enabled = false;
         ApplyAnimation();
     }
 
@@ -56,10 +60,9 @@ public class MeleeWeaponLogic : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("Attack");
+            weaponAnim.SetTrigger("ActiveTrigger");
             characterAnimator.SetTrigger("Attack");
         }
     }
-    
-    
 }
 

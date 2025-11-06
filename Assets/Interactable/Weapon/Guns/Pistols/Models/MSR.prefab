@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9002436549016896767}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GripPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1439239269586745738}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: projSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: -8499434317962466422}
   - component: {fileID: 3569680301651527897}
   - component: {fileID: 2270380087036002489}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MSR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,7 +250,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 1.7487926
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

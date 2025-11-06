@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class EnemySoldier : MonoBehaviour
 {
-    private bool Dead;
+    public bool Dead;
     [SerializeField] private StateController RagdollStates;
     [SerializeField] private RagdollHandler RagdollHandler;
 
@@ -27,16 +27,18 @@ public class EnemySoldier : MonoBehaviour
 
     void Update()
     {
-        animator.SetFloat("Speed", agent.speed);
-        if (Input.GetKeyDown(KeyCode.P))
-            CanPatrol = !CanPatrol;
-        if (CanPatrol)
-        {
-            Patrol();
+        if (!Dead)
+            {
+            animator.SetFloat("Speed", agent.speed);
+            if (Input.GetKeyDown(KeyCode.P))
+                CanPatrol = !CanPatrol;
+            if (CanPatrol)
+            {
+                Patrol();
+            }
+            else
+                agent.speed = 0;
         }
-        else
-            agent.speed = 0;
-        
     }
 
     void Patrol()
@@ -57,11 +59,14 @@ public class EnemySoldier : MonoBehaviour
 
     public void Death()
     {
-        CanPatrol = false;
-        agent.enabled = false;
-        RagdollStates.DisableAnimator();
-        RagdollHandler.Enable();
-        Debug.Log("Dead");
-        Dead = true;
+        if (!Dead)
+        {
+            CanPatrol = false;
+            agent.enabled = false;
+            RagdollStates.DisableAnimator();
+            RagdollHandler.Enable();
+            Debug.Log(gameObject.name + " dead");
+            Dead = true;
+        }
     }
 }

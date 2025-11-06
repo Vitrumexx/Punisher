@@ -5,9 +5,13 @@ using UnityEngine.AI;
 
 public class EnemyHealth : MonoBehaviour
 {
+    public float _maxHealth;
+    public float _health;
+
     private EnemySoldier enemyScript;
     void Start()
     {
+        _health = _maxHealth;
         enemyScript = GetComponent<EnemySoldier>();
     }
     void Update()
@@ -16,11 +20,18 @@ public class EnemyHealth : MonoBehaviour
         {
             enemyScript.Death();
         }
-        /*
-        if (param.health <= 0 && !Dead)
+    }
+
+    public void TakeDamage(float damage)
+    {
+        Debug.Log("TakeDamage triggered");
+        _health -= damage;
+        // Можно добавить лёгкий клип эффект/анимацию попадания
+        // enemyScript.PlayHitAnimation();
+
+        if (_health <= 0 && !enemyScript.Dead)
         {
-            Death();
+            enemyScript.Death();
         }
-        */
     }
 }

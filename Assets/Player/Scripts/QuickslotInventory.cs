@@ -138,6 +138,7 @@ public class QuickslotInventory : MonoBehaviour { // Объект у котор�
         }
         else if (currentSlot.item is MeleeWeapon meleeWeaponData)
         {
+            var meleeWeaponTrigger = obj.GetComponentInChildren<MeleeWeaponTrigger>();
             var meleeWeaponLogic = obj.GetComponent<MeleeWeaponLogic>();
             if (meleeWeaponLogic != null)
             {
@@ -145,6 +146,7 @@ public class QuickslotInventory : MonoBehaviour { // Объект у котор�
                 if (player != null)
                 {
                     meleeWeaponLogic.Init(player.transform.GetChild(0).GetComponent<Animator>(), meleeWeaponData);
+                    meleeWeaponTrigger.Init(meleeWeaponData);
                 }
             }
         }

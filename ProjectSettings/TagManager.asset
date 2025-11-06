@@ -6,14 +6,15 @@ TagManager:
   tags:
   - RotationPoint
   - PlayerHead
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Weapon
   - Water
   - UI
-  - 
+  - Bullet
   - 
   - 
   - 

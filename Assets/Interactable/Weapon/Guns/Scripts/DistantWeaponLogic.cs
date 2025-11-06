@@ -19,6 +19,7 @@ public class DistantWeaponLogic : MonoBehaviour
     private bool isAiming = false; // локальный флаг только для стрельбы от бедра
     private PlayerHandState handState;
 
+    [SerializeField] private Collider ownerCollider;
     public void Init(Animator animator, DistantWeapon weaponData)
     {
         audio = GetComponent<AudioSource>();
@@ -28,6 +29,7 @@ public class DistantWeaponLogic : MonoBehaviour
         mainCamera = Camera.main;
         
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+        ownerCollider = player.GetComponent<Collider>();
         if (player != null)
             handState = player.GetComponent<PlayerHandState>();
         playerParam = handState.gameObject.GetComponent<PlayerParameters>();
@@ -153,7 +155,11 @@ public class DistantWeaponLogic : MonoBehaviour
             if (projectile == null || projSpawnPoint == null) return;
             if (audio.clip == emptyClip) audio.clip = shotClip;
             audio.PlayOneShot(audio.clip);
+
             GameObject proj = Instantiate(projectile, projSpawnPoint.position, projSpawnPoint.rotation);
+            Projectile projScript = proj.GetComponent<Projectile>();
+            projScript.Initialize(distantWeapon.damage, ownerCollider);
+
             if (proj.TryGetComponent<Rigidbody>(out Rigidbody rb))
             {
                 rb.isKinematic = false;
@@ -165,7 +171,6 @@ public class DistantWeaponLogic : MonoBehaviour
         {
             audio.clip = emptyClip;
             audio.PlayOneShot(audio.clip);
-        }
-            
+        }    
     }
 }

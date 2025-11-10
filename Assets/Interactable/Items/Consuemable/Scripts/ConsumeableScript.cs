@@ -3,15 +3,9 @@ using UnityEngine;
 public class ConsumeableScript : MonoBehaviour
 {
     public ItemScriptableObject item;
-    public PlayerParameters playerParameters;
+    [SerializeField] private PlayerParameters playerParameters;
 
-    private void Awake()
-    {
-        playerParameters = GetComponentInParent<PlayerParameters>();
-    }
-   
-
-    public void Modifiers()
+    public void Modifiers(PlayerParameters playerParameters)
     {
         if (item == null)
         {
@@ -21,6 +15,7 @@ public class ConsumeableScript : MonoBehaviour
 
         if (playerParameters == null)
         {
+            Debug.Log($"{name}: PlayerParameters = {playerParameters}");
             Debug.LogWarning($"{name}: PlayerParameters не найден!");
             return;
         }
@@ -28,7 +23,6 @@ public class ConsumeableScript : MonoBehaviour
         {
             playerParameters._health += item.RestoreHealth;
             Debug.Log($"Здоровье увеличено на {item.RestoreHealth}. Текущее: {playerParameters._health}");  
-        }
-        
+        } 
     }
 }

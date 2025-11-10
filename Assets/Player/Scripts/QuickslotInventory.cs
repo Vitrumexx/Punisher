@@ -109,8 +109,10 @@ public class QuickslotInventory : MonoBehaviour { // Объект у котор�
     }
     void UseConsumeableItem()
     {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        PlayerParameters parameters = player.GetComponent<PlayerParameters>();
         consuemableScript = currentSlot.item.itemPrefab.GetComponent<ConsumeableScript>();
-        consuemableScript.Modifiers();
+        consuemableScript.Modifiers(parameters);
         
         if (currentSlot.amount <= 1)
             quickslotParent.GetChild(currentQuickslotID).GetComponentInChildren<DragAndDropItem>().NullifySlotData();
@@ -164,7 +166,7 @@ public class QuickslotInventory : MonoBehaviour { // Объект у котор�
             obj.transform.localPosition = Vector3.zero;
             obj.transform.localRotation = Quaternion.identity;
         }
-        if (obj.TryGetComponent<Collider>(out Collider col)) col.enabled = false;
+            if (obj.TryGetComponent<Collider>(out Collider col)) col.enabled = false;
         if (obj.TryGetComponent<Rigidbody>(out Rigidbody rb)) rb.isKinematic = true;
     }
 }

@@ -46,15 +46,28 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log($"[Projectile] Collided with {other.name}");
+        Debug.Log($"[Projectile] Collided with {collision.collider.name}");
 
-        EnemyHealth enemy = other.GetComponentInParent<EnemyHealth>();
+        EnemyHealth enemy = collision.collider.GetComponentInParent<EnemyHealth>();
         if (enemy != null)
         {
             Debug.Log("[Projectile] Hit enemy!");
             enemy.TakeDamage(damage);
+        }
+
+        if (destroyOnCollision)
+        {
+            Debug.Log("[Projectile] Destroying due to collision");
+            Destroy(gameObject);
+        }
+
+        PlayerHealth player = collision.collider.GetComponentInParent < PlayerHealth>();
+        if (player != null)
+        {
+            Debug.Log("[Projectile] Hit player!");
+            player.TakeDamage(damage);
         }
 
         if (destroyOnCollision)

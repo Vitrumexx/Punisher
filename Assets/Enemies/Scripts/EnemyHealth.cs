@@ -7,10 +7,12 @@ public class EnemyHealth : MonoBehaviour
 {
     public float _maxHealth;
     public float _health;
+    
 
     private EnemySoldier enemyScript;
     void Start()
     {
+        
         _health = _maxHealth;
         enemyScript = GetComponent<EnemySoldier>();
     }

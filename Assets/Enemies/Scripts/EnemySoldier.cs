@@ -11,17 +11,21 @@ public class EnemySoldier : MonoBehaviour
     public float rotationSpeed = 5f;
     private int currentPatrolIndex;
 
+    private Collider collision;
+
     public Transform[] patrolPoints;
     public Animator animator;
     private NavMeshAgent agent;
-    private bool CanPatrol;
+    public bool CanPatrol;
     void Start()
     {
         Dead = false;
         RagdollStates.Initialize();
         RagdollHandler.Initialize();
 
+        collision = GetComponent<Collider>();
         agent = GetComponent<NavMeshAgent>();
+
         GoToNextPatrolPoint();
     }
 
@@ -67,6 +71,7 @@ public class EnemySoldier : MonoBehaviour
             RagdollHandler.Enable();
             Debug.Log(gameObject.name + " dead");
             Dead = true;
+            collision.enabled = false;
         }
     }
 }

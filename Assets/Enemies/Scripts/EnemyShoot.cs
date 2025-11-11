@@ -4,30 +4,36 @@ using UnityEngine;
 
 public class EnemyShoot : MonoBehaviour
 {
-    private Animator characterAnimator;
+    
     [SerializeField] private DistantWeapon distantWeapon;
+    [SerializeField] private Transform projSpawnPoint;
+    [SerializeField] private Collider ownerCollider;
+
     public GameObject projectile;
+    public float attackDistance = 30f;
+    public float maxVisionDistance = 40f;
+    public float distanceToPlayer;
 
     private AudioClip shotClip;
     private AudioSource audio;
-    [SerializeField] private Transform projSpawnPoint;
+
+    private EnemySoldier soldier;
+    private Animator characterAnimator;
     private Camera mainCamera;
     private Ray TargetRay;
-    private Coroutine shootingCoroutine;
-    private bool isAiming = false; // локальный флаг только для стрельбы от бедра
+    private Coroutine shootingCoroutine;   
     private PlayerHandState handState;
-
-    [SerializeField] private Collider ownerCollider;
 
 
     private Transform player;
     private Transform target;
-    public float attackDistance = 10f;
+    
     private Animator animator;
 
-
     private bool isShooting;
-    private EnemySoldier soldier;
+
+
+   
     void Start()
     {
         //distantWeapon = GetComponentInChildren<DistantWeapon>();
@@ -35,6 +41,7 @@ public class EnemyShoot : MonoBehaviour
         animator = GetComponent<Animator>();
         soldier = GetComponent<EnemySoldier>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
 
         audio = GetComponentInChildren<AudioSource>();
         shotClip = audio.clip;
@@ -44,37 +51,64 @@ public class EnemyShoot : MonoBehaviour
     {
         if (!soldier.Dead)
         {
-            float distanceToPlayer = Vector3.Distance(player.position, transform.position);
+            distanceToPlayer = Vector3.Distance(player.position, transform.position);
 
             animator.SetBool("isAiming", isShooting);
-            if (distanceToPlayer <= attackDistance)
+
+            if (soldier.seeingPlayer)
             {
-                if (shootingCoroutine == null) shootingCoroutine = StartCoroutine(ShootingLoop());
-                isShooting = true;
-                soldier.CanPatrol = false;
-                FaceTarget(player);
+                if (distanceToPlayer <= attackDistance)
+                {
+                    soldier.StopSoldier();
+                    if (shootingCoroutine == null) shootingCoroutine = StartCoroutine(ShootingLoop());
+                    isShooting = true;
+                    soldier.CanPatrol = false;
+                    FaceTarget(player);
+                }
+                else
+                {
+                    StopShooting();
+                    soldier.ResumeSoldier();
+                    soldier.ChaseTarget(player);
+                    soldier.CanPatrol = false;
+                    return;
+                }
+            }
+            else if (!soldier.seeingPlayer && distanceToPlayer <= attackDistance && distanceToPlayer < maxVisionDistance)
+            {
+                StopShooting();
+                soldier.ChaseTarget(player);
+            }
+            else if (!soldier.seeingPlayer && distanceToPlayer > attackDistance && distanceToPlayer < maxVisionDistance)
+            {
+                soldier.ChaseTarget(player);
             }
             else
             {
-                if (shootingCoroutine != null)
-                {
-                    StopCoroutine(shootingCoroutine);
-                    shootingCoroutine = null;
-                }
-                
-                isShooting = false;
+                StopShooting();
+                return;
+            }
+            if (!soldier.seeingPlayer && distanceToPlayer > maxVisionDistance)
+            {
+                StopShooting();
+                soldier.CanPatrol = true;
+                return;
             }
         }
         else
-        {
-            if (shootingCoroutine != null)
-            {
-                StopCoroutine(shootingCoroutine);
-                shootingCoroutine = null;
-            }
-            isShooting = false;
-        }
+            StopShooting();
     }
+
+    void StopShooting()
+    {
+        if (shootingCoroutine != null)
+        {
+            StopCoroutine(shootingCoroutine);
+            shootingCoroutine = null;
+        }
+        isShooting = false;
+    }
+
     void FaceTarget(Transform target)
     {
         Vector3 direction = (target.position - transform.position).normalized;
@@ -123,8 +157,4 @@ public class EnemyShoot : MonoBehaviour
     {
 
     }
-
-   
 }
-
-    

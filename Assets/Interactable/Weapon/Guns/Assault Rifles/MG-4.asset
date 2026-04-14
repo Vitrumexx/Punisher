@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 702b6b3c5cba1cb4ea77390f72212194, type: 3}
+  m_Name: MG-4
+  m_EditorClassIdentifier: 
+  maxAmount: 1
+  Type: 2
+  Icon: {fileID: 0}
+  itemPrefab: {fileID: 2424041236399122136, guid: f1d06ceb14528a44da5b2ee7499ce1a6, type: 3}
+  Name: MG-4
+  Description: Advanced machine gun with large magazine
+  isConsumeable: 0
+  RestoreHealth: 0
+  FreezeStamina: 0
+  IncreaseSpeed: 0
+  WeaponType: 2
+  clipAmmo: 75
+  maxAmmo: 1200
+  damage: 18
+  shootingSpeed: 9
+  anim: {fileID: 0}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraRotation : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class CameraRotation : MonoBehaviour
     public float maxY = 60f;
     public float smoothTime = 0.1f;
     public Animator playerAnim;
+    public Image crosshair;
 
     private float yaw = 0f;
     private float pitch = 0f;
@@ -70,6 +72,7 @@ public class CameraRotation : MonoBehaviour
             {
                 playerAnim.SetBool("isAiming", true);
                 isAiming = true;
+                crosshair.enabled = true;
             }
         }
 
@@ -80,6 +83,7 @@ public class CameraRotation : MonoBehaviour
             {
                 playerAnim.SetBool("isAiming", false);
                 isAiming = false;
+                crosshair.enabled = false;
             }
         }
 

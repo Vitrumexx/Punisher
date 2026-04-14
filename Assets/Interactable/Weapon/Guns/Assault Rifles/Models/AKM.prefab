@@ -509,6 +509,7 @@ MonoBehaviour:
   emptyClip: {fileID: 8300000, guid: cafc46281ffe12d40a1905faf1c4139c, type: 3}
   playerParam: {fileID: 0}
   projSpawnPoint: {fileID: 2491111298694277025}
+  ownerCollider: {fileID: 0}
 --- !u!82 &1067561385402805042
 AudioSource:
   m_ObjectHideFlags: 0
@@ -756,7 +757,7 @@ Transform:
   m_GameObject: {fileID: 7924857004662843376}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.79, y: -0.19, z: 0}
+  m_LocalPosition: {x: 0.73, y: -0.19, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -62,6 +62,8 @@ public class DistantWeaponLogic : MonoBehaviour
                 break;
 
             case DistantWeaponType.AssaultRifle:
+            case DistantWeaponType.MachineGun:
+            case DistantWeaponType.Rifle:
                 if (handState != null) handState.CarryRifle = true;
                 characterAnimator.SetBool("CarryPistol", handState.CarryPistol);
                 characterAnimator.SetBool("CarryRifle", handState.CarryRifle);
@@ -117,6 +119,7 @@ public class DistantWeaponLogic : MonoBehaviour
                 break;
 
             case DistantWeaponType.AssaultRifle:
+            case DistantWeaponType.MachineGun:
                 if (Input.GetKey(KeyCode.Mouse0) && shootingCoroutine == null)
                     shootingCoroutine = StartCoroutine(ShootingLoop());
 
@@ -131,6 +134,11 @@ public class DistantWeaponLogic : MonoBehaviour
                         isAiming = false;
                     }
                 }
+                break;
+
+            case DistantWeaponType.Rifle:
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                    FireProjectile();
                 break;
         }
     }

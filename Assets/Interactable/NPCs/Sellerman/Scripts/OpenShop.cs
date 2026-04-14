@@ -21,6 +21,13 @@ public class OpenShop : MonoBehaviour
             ShopIsActive = !ShopIsActive;
             ShopCanvas.enabled = ShopIsActive;
 
+            InteractionHint hint = GetComponent<InteractionHint>();
+            if (hint != null)
+            {
+                if (ShopIsActive) hint.Hide();
+                else hint.Show();
+            }
+
             if (ShopIsActive)
             {
                 cam.sensitivity = 0f;
@@ -44,6 +51,14 @@ public class OpenShop : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerIsNear = true;
+
+            InteractionHint hint = GetComponent<InteractionHint>();
+            if (hint == null)
+            {
+                hint = gameObject.AddComponent<InteractionHint>();
+                hint.Setup("E");
+            }
+            hint.Show();
         }
     }
 
@@ -54,6 +69,9 @@ public class OpenShop : MonoBehaviour
             playerIsNear = false;
             ShopIsActive = false;
             ShopCanvas.enabled = false;
+
+            InteractionHint hint = GetComponent<InteractionHint>();
+            if (hint != null) hint.Hide();
         }
     }
 }

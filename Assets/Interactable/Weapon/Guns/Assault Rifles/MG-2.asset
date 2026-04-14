@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 702b6b3c5cba1cb4ea77390f72212194, type: 3}
+  m_Name: MG-2
+  m_EditorClassIdentifier: 
+  maxAmount: 1
+  Type: 2
+  Icon: {fileID: 0}
+  itemPrefab: {fileID: 2090869720192426571, guid: cd82c1d1012eb8b4c9b27e2068e6e258, type: 3}
+  Name: MG-2
+  Description: Medium machine gun with balanced stats
+  isConsumeable: 0
+  RestoreHealth: 0
+  FreezeStamina: 0
+  IncreaseSpeed: 0
+  WeaponType: 2
+  clipAmmo: 50
+  maxAmmo: 900
+  damage: 14
+  shootingSpeed: 11
+  anim: {fileID: 0}

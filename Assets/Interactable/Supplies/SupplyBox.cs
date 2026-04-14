@@ -39,6 +39,14 @@ public class SupplyBox : MonoBehaviour
         {
             playerInZone = true;
             player = other.GetComponent<PlayerParameters>();
+
+            InteractionHint hint = GetComponent<InteractionHint>();
+            if (hint == null)
+            {
+                hint = gameObject.AddComponent<InteractionHint>();
+                hint.Setup("E");
+            }
+            hint.Show();
         }
     }
 
@@ -48,6 +56,9 @@ public class SupplyBox : MonoBehaviour
         {
             playerInZone = false;
             player = null;
+
+            InteractionHint hint = GetComponent<InteractionHint>();
+            if (hint != null) hint.Hide();
         }
     }
 

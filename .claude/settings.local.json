@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs ls:*)",
+      "Bash(grep -rn \"a9550e1a2e0dda44dae7b8a49ae77120\\\\|0a763e4b102a9af4f80a043023f40ac7\" Assets/*.meta Assets/**/*.meta)",
+      "Bash(grep:*)",
+      "Bash(find Assets:*)",
+      "Bash(find \"/c/Users/alale/Punisher/Assets\" -type f \\\\\\( -name \"*.cs\" -o -name \"*.asset\" \\\\\\) -exec grep -l \"RocketLauncher\\\\|Shotgun\\\\|Rifle\" {} \\\\;)",
+      "Bash(find:*)",
+      "Bash(ls -1 \"/c/Users/alale/Punisher/Assets/Interactable/Weapon/Guns\"/*/*.asset)",
+      "Bash(bash /tmp/get_scales.sh)",
+      "Bash(ls:*)"
+    ]
+  }
+}

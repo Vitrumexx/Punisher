@@ -152,17 +152,16 @@ public class QuickslotInventory : MonoBehaviour { // Объект у котор�
                 }
             }
         }
+        obj.transform.SetParent(rightHand, false);
         Transform grip = obj.transform.Find("GripPoint");
         if (grip != null)
         {
-            obj.transform.SetParent(rightHand, false);
-            obj.transform.position = rightHand.position - (grip.position - obj.transform.position);
-            obj.transform.rotation = rightHand.rotation * Quaternion.Inverse(grip.localRotation);
+            // Offset so GripPoint sits exactly at the hand pivot
+            obj.transform.localPosition = -grip.localPosition;
+            obj.transform.localRotation = Quaternion.Inverse(grip.localRotation);
         }
         else
         {
-            
-            obj.transform.SetParent(rightHand, false);
             obj.transform.localPosition = Vector3.zero;
             obj.transform.localRotation = Quaternion.identity;
         }

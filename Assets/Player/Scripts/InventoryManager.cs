@@ -31,13 +31,40 @@ public class InventoryManager : MonoBehaviour
     {
         Item item = other.GetComponent<Item>();
         if (item != null)
+        {
+            if (nearbyItem != null)
+                HideHint(nearbyItem.gameObject);
             nearbyItem = item;
+            ShowHint(nearbyItem.gameObject);
+        }
     }
 
     void OnTriggerExit(Collider other)
     {
+        if (nearbyItem == null) return;
         if (other.GetComponent<Item>() == nearbyItem)
+        {
+            HideHint(nearbyItem.gameObject);
             nearbyItem = null;
+        }
+    }
+
+    private void ShowHint(GameObject target)
+    {
+        InteractionHint hint = target.GetComponent<InteractionHint>();
+        if (hint == null)
+        {
+            hint = target.AddComponent<InteractionHint>();
+            hint.Setup("E");
+        }
+        hint.Show();
+    }
+
+    private void HideHint(GameObject target)
+    {
+        InteractionHint hint = target.GetComponent<InteractionHint>();
+        if (hint != null)
+            hint.Hide();
     }
 
     public void AddItem(ItemScriptableObject _item, int _amount)

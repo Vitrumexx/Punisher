@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class SwitchScene : MonoBehaviour
 {
@@ -9,8 +8,7 @@ public class SwitchScene : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            // Загружаем новую сцену
-            SceneManager.LoadScene(targetSceneName);
+            SceneTransitionManager.Instance.TransitionTo(targetSceneName);
         }
     }
 }

@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class QuickSlotSync : MonoBehaviour
 {
@@ -32,7 +30,7 @@ public class QuickSlotSync : MonoBehaviour
             var equip = equipSlots[i];
             var quick = quickSlots[i];
 
-            // обновляем только если что-то изменилось
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             if (equip.item != quick.item ||
                 equip.amount != quick.amount ||
                 equip.isEmpty != quick.isEmpty)
